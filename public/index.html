@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="styles.css">
+  <title>Simple url shortener nodejs project</title>
+</head>
+
+<body>
+  <div>
+    <h1>Simple url shortener nodejs project</h1>
+    <div>
+      <label for="inputLink">link</label>
+      <input type="url" name="inputLink" id="inputLink" placeholder="link" required>
+      <button type="button" id="submitButton" onclick="clickHandler()" disabled>click</button>
+    </div>
+    <div id="shortLink"></div>
+  </div>
+
+  <script>
+    function debounce(fn, t = 500) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(fn, t, ...args);
+      };
+    }
+
+    let inputText = null;
+    let linkEl = document.getElementById("shortUrl");
+
+    const linkInputEl = document.getElementById("inputLink");
+    const shortLinkEl = document.getElementById("shortLink");
+    const buttonEl = document.getElementById("submitButton");
+
+    linkInputEl.addEventListener(
+      "input",
+      debounce((e) => {
+        const regex = new RegExp(/#URL_PATTERN#/, "i");
+        const isValid = regex.test(e.target.value);
+
+        if (isValid) {
+          linkInputEl.classList.add("valid-input");
+          linkInputEl.classList.remove("invalid-input");
+        } else {
+          linkInputEl.classList.add("invalid-input");
+          linkInputEl.classList.remove("valid-input");
+        }
+
+        buttonEl.disabled = !isValid;
+
+        inputText = e.target.value;
+      })
+    );
+
+    function clickHandler() {
+      fetch('#DOMAIN_URI#/urls', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ origUrl: inputText }),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          linkEl = document.createElement("a");
+          linkEl.innerText = result?.shortUrl || null;
+          linkEl.href = result?.shortUrl || null;
+          linkEl.id = "shortUrl";
+
+          shortLinkEl.replaceChildren(linkEl);
+        });
+
+      buttonEl.disabled = true;
+      linkInputEl.classList.remove("valid-input");
+      linkInputEl.value = null;
+      inputText = null;
+    };
+
+    window.addEventListener("unload", () => {
+      linkEl?.remove();
+    });
+  </script>
+</body>
+
+</html>

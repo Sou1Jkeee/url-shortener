@@ -1,0 +1,11 @@
+/.npm
+/node_modules
+
+.env
+.env.development.local
+
+dist
+
+.DS_Store
+.idea
+.vscode

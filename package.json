@@ -1,0 +1,24 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "Alexander Vladimirov",
+  "license": "MIT",
+  "type": "module",
+  "description": "Simple url shortener nodejs project with express and mongoDB",
+  "imports": {
+    "#*": "./src/*",
+    "#db": "./src/db/*",
+    "#server": "./src/server/*",
+    "#public": "./public/*"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5",
+    "nanoid": "^5.0.9"
+  }
+}

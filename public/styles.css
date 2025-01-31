@@ -1,0 +1,7 @@
+input.valid-input {
+  outline: 1.5px solid green;
+}
+
+input.invalid-input {
+  outline: 1.5px solid red;
+}
