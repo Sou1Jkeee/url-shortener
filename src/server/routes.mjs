@@ -14,10 +14,7 @@ const appRoutes = [
     method: 'get',
     url: '/',
     fn: async (_, response) => {
-      const env = {
-        DOMAIN_URI: DOMAIN_URI,
-        URL_PATTERN: URL_PATTERN,
-      };
+      const env = { DOMAIN_URI: DOMAIN_URI };
 
       response.render('index', { env });
     },
