@@ -5,20 +5,29 @@
   <meta charset="UTF-8">
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
   <script src="main.js"></script>
   <title>Simple url shortener nodejs project</title>
 </head>
 
 <body>
-  <div>
-    <h1>Simple url shortener nodejs project</h1>
-    <div>
-      <label for="inputLink">link</label>
-      <input type="url" name="inputLink" id="inputLink" placeholder="link" required>
-      <button type="button" id="submitButton" onclick="clickHandler('#DOMAIN_URI#/urls')" disabled>click</button>
+  <main>
+    <div class="container text-center">
+      <h1>Simple url shortener nodejs project</h1>
+      <div class="row">
+        <div class="col">
+          <div class="input-group mb-3 p-1 popup">
+            <button class="btn btn-primary" type="button" id="submitButton" onclick="clickHandler('#DOMAIN_URI#/urls')"
+              disabled>Shorten</button>
+            <input class="form-control" type="url" name="inputLink" id="inputLink" placeholder="Enter address" required>
+
+            <input class="form-control" type="text" name="shortLink" id="shortLink" readonly />
+            <span class="popup-text" id="popupText">Copied to clipboard!</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="shortLink"></div>
-  </div>
+  </main>
 </body>
 
 </html>
