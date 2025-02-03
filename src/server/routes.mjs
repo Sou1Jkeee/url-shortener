@@ -46,7 +46,8 @@ const appRoutes = [
       const isValid = regex.test(origUrl);
 
       if (origUrl && isValid) {
-        const originalUrl = origUrl.replace(/[?\/]+$/, '');
+        let originalUrl = origUrl.replace(/[?\/]+$/, '');
+        if (!origUrl.startsWith('https')) originalUrl = `https://${originalUrl}`;
 
         let url = await Url.findOne({ originalUrl });
 
