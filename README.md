@@ -2,6 +2,8 @@
 
 ## Simple url shortener nodejs project with express and mongoDB
 
+### You can test production build at [url-shortener-sou1jkeee.vercel.app](https://url-shortener-sou1jkeee.vercel.app)
+
 ## Installation and launch
 
 **IMPORTANT!** _MongoDB must be installed on the system, or you can use self-hosted or cloud-based_
